@@ -1,24 +1,29 @@
-# Databases and Vector Stores
-memory/
-*.db
-*.sqlite
-
-# Python environment and cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-venv/
+
+# Environments
 .venv/
-.env
+venv/
+ENV/
 
-# RAG Source Documents
-# Ignores PDFs but keeps the folder structure
-rag_docs/pdfs/*
-!.gitkeep
+# Databases and Local Storage
+# We ignore these to keep the repo clean from runtime changes
+memory/
+*.db
+*.sqlite
+*.log
 
-# System and IDE files
-.vscode/
-.idea/
+# Vector Store (ChromaDB)
+chroma/
+index/
+
+# System Files
 .DS_Store
 Thumbs.db
-.streamlit/
+.vscode/
+.idea/
+
+# Streamlit local config
+.streamlit/config.toml
