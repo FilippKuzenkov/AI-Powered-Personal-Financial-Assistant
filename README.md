@@ -1,68 +1,47 @@
-AI-Powered Financial Assistant
+# AI-Powered Personal Finance Agent
 
 This is a financial assistant designed for spending analysis and financial education. It operates on a local-first architecture to ensure data privacy, utilizing LangGraph for orchestration and Ollama for local LLM inference.
 
-Features:
-- Local-First Execution: All data processing and LLM inference occur on the local machine. No external APIs or cloud services are used.
+## Features
+* **Local-First Execution:** All data processing and LLM inference occur on the local machine. No external APIs or cloud services are used.
+* **Deterministic Analysis:** Uses Pandas for financial calculations to ensure mathematical accuracy while leveraging LLMs for intent classification.
+* **Agentic Workflow:** Implements a ReAct-loop state machine to route queries between data tools, educational knowledge bases, and persistent user profiles.
+* **Compliance Guardrails:** Includes a safety node to filter speculative investment queries and provide strictly educational guidance.
+* **RAG Integration:** Uses ChromaDB for local vector storage to retrieve context from financial education documents.
 
-- Deterministic Analysis: Uses Pandas for financial calculations to ensure mathematical accuracy while leveraging LLMs for intent classification.
-
-- Agentic Workflow: Implements a ReAct-loop state machine to route queries between data tools, educational knowledge bases, and persistent user profiles.
-
-- Compliance Guardrails: Includes a safety node to filter speculative investment queries and provide strictly educational guidance.
-
-- RAG Integration: Uses ChromaDB for local vector storage to retrieve context from financial education documents.
-
-Technical Architecture
-
+## Technical Architecture
 The system is built as a directed acyclic graph (DAG) using LangGraph:
+1. **Guardrail Node:** Checks input for investment speculation or risky financial topics.
+2. **Router:** Classifies intent into Data, Knowledge, Profile, or Plan categories.
+3. **Tools:**
+    * **Banking Tool:** Executes pandas-based analysis on CSV transaction data.
+    * **Knowledge Tool:** Performs similarity searches in a local vector database.
+    * **Profile Tool:** Manages long-term goals and preferences in a SQLite database.
+4. **Summarizer:** Aggregates tool outputs and conversation history for the final response.
 
-Guardrail Node: Checks input for investment speculation or risky financial topics.
+## Setup and Installation
 
-Router: Classifies intent into Data, Knowledge, Profile, or Plan categories.
+### Prerequisites
+1. Install [Ollama](https://ollama.com/).
+2. Pull the required models:
+   ollama pull qwen2.5:3b-instruct
+   ollama pull nomic-embed-text
 
-Tools:
-- Banking Tool: Executes pandas-based analysis on CSV transaction data.
-- Knowledge Tool: Performs similarity searches in a local vector database.
-- Profile Tool: Manages long-term goals and preferences in a SQLite database.
+## Installation
+Clone the repository and install the dependencies: pip install -r requirements.txt
 
-Summarizer: Aggregates tool outputs and conversation history for the final response.
-
-Setup and Installation
-Prerequisites
-Install Ollama.
-
-Pull the required models:
-
-Bash
-
-ollama pull qwen2.5:3b-instruct
-ollama pull nomic-embed-text
-Installation
-Clone the repository and install the dependencies:
-
-Bash
-
-pip install -r requirements.txt
-Initialization
+## Initialization
 Initialize the local SQLite database and ingest the educational PDF documents:
-
-Bash
-
 python init_db.py
 python ingest_pdfs.py
-Execution
-Run the Streamlit dashboard:
 
-Bash
+## Execution
+Run the Streamlit dashboard: streamlit run app.py
 
-streamlit run app.py
-Usage
+## Usage
 The application interface consists of two main sections:
+- Dashboard: For uploading transaction CSVs and viewing spending visualizations.
+- Coach: A chat interface for querying spending data, calculating savings timelines, or asking financial literacy questions.
 
-Dashboard: For uploading transaction CSVs and viewing spending visualizations.
-
-Coach: A chat interface for querying spending data, calculating savings timelines, or asking financial literacy questions.
-
-Disclaimer
+## Disclaimer
 This software is for educational purposes only. It does not provide professional investment or financial advice. The authors are not responsible for any financial decisions made based on the output of this tool.
