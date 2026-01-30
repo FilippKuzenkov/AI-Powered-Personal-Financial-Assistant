@@ -1,6 +1,6 @@
 AI-Powered Financial Assistant
 
-Overview
+### Overview
 
 This is a local-first financial assistant focused on
 spending analysis and financial literacy. The system is designed to
@@ -12,7 +12,7 @@ language model inference. All data processing and storage remain local.
 
 ------------------------------------------------------------------------
 
-Features
+### Features
 
 -   Local inference using Ollama without external APIs
 -   Deterministic financial analysis using Pandas
@@ -23,12 +23,12 @@ Features
 
 ------------------------------------------------------------------------
 
-Technical Architecture
+### Technical Architecture
 
 The assistant is implemented as a Directed Acyclic Graph (DAG) using
 LangGraph.
 
-Flow
+## Flow
 
 1.  Guardrail Node
     Filters speculative investment intent and risky financial topics.
@@ -53,22 +53,22 @@ Flow
 
 ------------------------------------------------------------------------
 
-Setup and Installation
+### Setup and Installation
 
-Prerequisites
+## Prerequisites
 
 Install Ollama and pull the required models:
 
     ollama pull qwen2.5:3b-instruct
     ollama pull nomic-embed-text
 
-Installation
+## Installation
 
 Clone the repository and install dependencies:
 
     pip install -r requirements.txt
 
-Initialization
+## Initialization
 
 Initialize the local database and ingest PDF documents from
 rag_docs/pdfs/:
@@ -76,7 +76,7 @@ rag_docs/pdfs/:
     python init_db.py
     python ingest_pdfs.py
 
-Execution
+## Execution
 
 Run the Streamlit application:
 
@@ -84,7 +84,7 @@ Run the Streamlit application:
 
 ------------------------------------------------------------------------
 
-Usage
+## Usage
 
 -   Dashboard: Upload transaction CSV files and view spending
     visualizations.
@@ -93,7 +93,7 @@ Usage
 
 ------------------------------------------------------------------------
 
-Disclaimer
+ ## Disclaimer
 
 This software is intended for educational purposes only. It provides
 financial education and data visualization based on user-provided inputs
