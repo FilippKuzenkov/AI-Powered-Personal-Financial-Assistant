@@ -1,47 +1,100 @@
-# AI-Powered Personal Finance Agent
+AI-Powered Financial Assistant
 
-This is a financial assistant designed for spending analysis and financial education. It operates on a local-first architecture to ensure data privacy, utilizing LangGraph for orchestration and Ollama for local LLM inference.
+Overview
 
-## Features
-* **Local-First Execution:** All data processing and LLM inference occur on the local machine. No external APIs or cloud services are used.
-* **Deterministic Analysis:** Uses Pandas for financial calculations to ensure mathematical accuracy while leveraging LLMs for intent classification.
-* **Agentic Workflow:** Implements a ReAct-loop state machine to route queries between data tools, educational knowledge bases, and persistent user profiles.
-* **Compliance Guardrails:** Includes a safety node to filter speculative investment queries and provide strictly educational guidance.
-* **RAG Integration:** Uses ChromaDB for local vector storage to retrieve context from financial education documents.
+This is a local-first financial assistant focused on
+spending analysis and financial literacy. The system is designed to
+operate entirely on the user’s machine, ensuring that sensitive
+financial data is not transmitted to external services.
 
-## Technical Architecture
-The system is built as a directed acyclic graph (DAG) using LangGraph:
-1. **Guardrail Node:** Checks input for investment speculation or risky financial topics.
-2. **Router:** Classifies intent into Data, Knowledge, Profile, or Plan categories.
-3. **Tools:**
-    * **Banking Tool:** Executes pandas-based analysis on CSV transaction data.
-    * **Knowledge Tool:** Performs similarity searches in a local vector database.
-    * **Profile Tool:** Manages long-term goals and preferences in a SQLite database.
-4. **Summarizer:** Aggregates tool outputs and conversation history for the final response.
+The application uses LangGraph for orchestration and Ollama for local
+language model inference. All data processing and storage remain local.
 
-## Setup and Installation
+------------------------------------------------------------------------
 
-### Prerequisites
-1. Install [Ollama](https://ollama.com/).
-2. Pull the required models:
-   ollama pull qwen2.5:3b-instruct
-   ollama pull nomic-embed-text
+Features
 
-## Installation
-Clone the repository and install the dependencies: pip install -r requirements.txt
+-   Local inference using Ollama without external APIs
+-   Deterministic financial analysis using Pandas
+-   Agent-based routing between specialized tools
+-   Guardrails to redirect speculative investment requests toward
+    educational content
+-   Persistent local storage using SQLite and ChromaDB
 
-## Initialization
-Initialize the local SQLite database and ingest the educational PDF documents:
-python init_db.py
-python ingest_pdfs.py
+------------------------------------------------------------------------
 
-## Execution
-Run the Streamlit dashboard: streamlit run app.py
+Technical Architecture
 
-## Usage
-The application interface consists of two main sections:
-- Dashboard: For uploading transaction CSVs and viewing spending visualizations.
-- Coach: A chat interface for querying spending data, calculating savings timelines, or asking financial literacy questions.
+The assistant is implemented as a Directed Acyclic Graph (DAG) using
+LangGraph.
 
-## Disclaimer
-This software is for educational purposes only. It does not provide professional investment or financial advice. The authors are not responsible for any financial decisions made based on the output of this tool.
+Flow
+
+1.  Guardrail Node
+    Filters speculative investment intent and risky financial topics.
+
+2.  Router Node
+    Classifies user intent into:
+
+    -   DATA (spending analysis)
+    -   KNOWLEDGE (financial literacy)
+    -   PROFILE (user goals)
+    -   PLAN (projections)
+
+3.  Tool Execution
+
+    -   Banking Tool: Processes CSV transaction data using Pandas
+    -   Knowledge Tool: Performs retrieval-augmented generation using
+        ChromaDB
+    -   Profile Tool: Manages long-term user data in SQLite
+
+4.  Summarizer Node
+    Aggregates tool outputs into a single response.
+
+------------------------------------------------------------------------
+
+Setup and Installation
+
+Prerequisites
+
+Install Ollama and pull the required models:
+
+    ollama pull qwen2.5:3b-instruct
+    ollama pull nomic-embed-text
+
+Installation
+
+Clone the repository and install dependencies:
+
+    pip install -r requirements.txt
+
+Initialization
+
+Initialize the local database and ingest PDF documents from
+rag_docs/pdfs/:
+
+    python init_db.py
+    python ingest_pdfs.py
+
+Execution
+
+Run the Streamlit application:
+
+    streamlit run app.py
+
+------------------------------------------------------------------------
+
+Usage
+
+-   Dashboard: Upload transaction CSV files and view spending
+    visualizations.
+-   Coach: Query spending data, calculate savings timelines, or ask
+    financial literacy questions.
+
+------------------------------------------------------------------------
+
+Disclaimer
+
+This software is intended for educational purposes only. It provides
+financial education and data visualization based on user-provided inputs
+and does not constitute professional financial or investment advice.
