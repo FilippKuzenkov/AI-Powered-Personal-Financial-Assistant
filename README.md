@@ -86,8 +86,7 @@ Run the Streamlit application:
 
 ## Usage
 
--   Dashboard: Upload transaction CSV files and view spending
-    visualizations.
+-   Dashboard: Upload transaction CSV files and view analysis.
 -   Coach: Query spending data, calculate savings timelines, or ask
     financial literacy questions.
 
