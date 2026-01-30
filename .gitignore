@@ -1,0 +1,24 @@
+# Databases and Vector Stores
+memory/
+*.db
+*.sqlite
+
+# Python environment and cache
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+
+# RAG Source Documents
+# Ignores PDFs but keeps the folder structure
+rag_docs/pdfs/*
+!.gitkeep
+
+# System and IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.streamlit/
