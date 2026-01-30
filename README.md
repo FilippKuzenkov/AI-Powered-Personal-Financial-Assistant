@@ -1,6 +1,6 @@
 AI-Powered Financial Assistant
 
-### Overview
+# Overview
 
 This is a local-first financial assistant focused on
 spending analysis and financial literacy. The system is designed to
@@ -12,7 +12,7 @@ language model inference. All data processing and storage remain local.
 
 ------------------------------------------------------------------------
 
-### Features
+# Features
 
 -   Local inference using Ollama without external APIs
 -   Deterministic financial analysis using Pandas
@@ -23,7 +23,7 @@ language model inference. All data processing and storage remain local.
 
 ------------------------------------------------------------------------
 
-### Technical Architecture
+# Technical Architecture
 
 The assistant is implemented as a Directed Acyclic Graph (DAG) using
 LangGraph.
@@ -53,7 +53,7 @@ LangGraph.
 
 ------------------------------------------------------------------------
 
-### Setup and Installation
+# Setup and Installation
 
 ## Prerequisites
 
@@ -93,7 +93,7 @@ Run the Streamlit application:
 
 ------------------------------------------------------------------------
 
- ## Disclaimer
+ # Disclaimer
 
 This software is intended for educational purposes only. It provides
 financial education and data visualization based on user-provided inputs
